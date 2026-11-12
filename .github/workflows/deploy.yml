@@ -13,12 +13,12 @@ jobs:
   build-and-publish:
     runs-on: ubuntu-latest
 
-    env:
-      PUPPETEER_CACHE_DIR: ${{ runner.temp }}/puppeteer
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Configure Puppeteer cache directory
+        run: echo "PUPPETEER_CACHE_DIR=$RUNNER_TEMP/puppeteer" >> "$GITHUB_ENV"
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
